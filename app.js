@@ -34,8 +34,19 @@ app.get("/delete/:id",async (req,res)=>{
 })
 
 app.get('/edit/:id',async(req,res)=>{
-    let edit =await userModel.findOne({id:req.params.id});
-    res.render('edit')
+    let edit =await userModel.findOne({_id:req.params.id});
+    // console.log(edit);
+    res.render('edit',{user:edit})
+})
+
+app.post('/update/:id',async(req,res)=>{
+    let {user_name,user_email,image_url}=req.body;
+    await userModel.findOneAndUpdate({_id:req.params.id},{
+        username:user_name,
+        email:user_email,
+        image:image_url
+    },{new:true});
+    res.redirect('/read')
 })
 
 app.listen(3000);  
