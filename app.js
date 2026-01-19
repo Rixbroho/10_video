@@ -33,4 +33,9 @@ app.get("/delete/:id",async (req,res)=>{
     res.redirect('/read')
 })
 
+app.get('/edit/:id',async(req,res)=>{
+    let edit =await userModel.findOne({id:req.params.id});
+    res.render('edit')
+})
+
 app.listen(3000);  
