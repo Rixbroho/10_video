@@ -25,12 +25,12 @@ app.post('/create',async(req,res)=>{
         image:image_url
     });
     // console.log(createUser);
-    res.redirect('/read')
+    res.redirect('/read');
 })
 
 app.get("/delete/:id",async (req,res)=>{
     let del =await userModel.findOneAndDelete({_id:`${req.params.id}`});
-    res.redirect('/read')
+    res.redirect('/read');
 })
 
 app.get('/edit/:id',async(req,res)=>{
@@ -46,7 +46,7 @@ app.post('/update/:id',async(req,res)=>{
         email:user_email,
         image:image_url
     },{new:true});
-    res.redirect('/read')
+    res.redirect('/read');
 })
 
 app.listen(3000);  
